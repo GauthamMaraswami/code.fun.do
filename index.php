@@ -85,7 +85,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="fh5co-logo"><a href="index.html"><i class="icon-study"></i>PRIORI<span>.</span></a></div>
+							<div id="fh5co-logo"><a href="index.php"><i class="icon-study"></i>PRIORI<span>.</span></a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
@@ -109,7 +109,7 @@
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2 text-center slider-text">
 									<div class="slider-text-inner">
-										<h1>SOME RANDOM TEXT</h1>
+										<h1>Distributed Database for Patients</h1>
 									</div>
 								</div>
 							</div>
@@ -121,7 +121,7 @@
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2 text-center slider-text">
 									<div class="slider-text-inner">
-										<h1>Get ready for an interactive learning</h1>
+										<h1>Decentralized Insurance</h1>
 									</div>
 								</div>
 							</div>
@@ -133,7 +133,7 @@
 							<div class="row">
 								<div class="col-md-8 col-md-offset-2 text-center slider-text">
 									<div class="slider-text-inner">
-										<h1>We Help You to Learn New Things</h1></p>
+										<h1>PRIORI</h1></p>
 									</div>
 								</div>
 							</div>
@@ -157,9 +157,6 @@
 						<div class="col-md-5">
 							<div class="pricing__item">
 								<div class="wrap-price">
-									<!-- <div class="icon icon-user2"></div> -->
-
-									<!-- <p class="pricing__sentence">Single user license</p> -->
 								</div>
 								<div class="pricing__price">
 									<span class="pricing__anim pricing__anim--1">
@@ -210,8 +207,8 @@
 				<div class="row copyright">
 					<div class="col-md-12 text-center">
 						<p>
-							<small class="block">&copy; 2018 PRIORI. All Rights Reserved.</small>
-							<small class="block">Designed by <a href="#" target="_blank">Team <i>EXODUS</i></a> </small>
+							<small class="block">A PRIORI APP</small>
+							<small class="block">Designed by <a href="#" target="_blank">Team <i>EQUINOX</i></a> </small>
 						</p>
 					</div>
 				</div>

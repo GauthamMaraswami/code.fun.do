@@ -97,7 +97,6 @@ contract Patient {
     function getOwner() public view returns(address) {
         return owner;
     }
-    
     function verify() public payable returns(bool) {
         assert (msg.sender == owner);
     }
@@ -111,7 +110,6 @@ contract Patient {
         permission[_doctor] = false;
     }
     function getPermission(address _doctor) public view returns(bool) {
-        require(msg.sender == owner);
         return permission[_doctor];
     }
     

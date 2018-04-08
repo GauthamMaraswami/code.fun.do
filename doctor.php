@@ -85,7 +85,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="fh5co-logo"><a href="index.html"><i class="icon-study"></i>PRIORI<span>.</span></a></div>
+							<div id="fh5co-logo"><a href="index.php"><i class="icon-study"></i>PRIORI<span>.</span></a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
@@ -213,6 +213,12 @@
 										<div class="form-group">
 											<input id="remarks" type="text" class="form-control" name="address" placeholder="Remarks">
 										</div>
+										<div class="form-group">
+											<input id="category" type="text" class="form-control" name="address" placeholder="Category">
+										</div>
+										<div class="form-group">
+											<input id="cost" type="text" class="form-control" name="address" placeholder="Cost">
+										</div>
 										<button type="submit" id="click" class="btn btn-sm">Go!</button>
 									</form>
 								</div>
@@ -246,8 +252,8 @@
 				<div class="row copyright">
 					<div class="col-md-12 text-center">
 						<p>
-							<small class="block">&copy; 2018 PRIORI. All Rights Reserved.</small>
-							<small class="block">Designed by <a href="#" target="_blank">Team <i>EXODUS</i></a> </small>
+							<small class="block">A PRIORI APP</small>
+							<small class="block">Designed by <a href="#" target="_blank">Team <i>EQUINOX</i></a> </small>
 						</p>
 					</div>
 				</div>

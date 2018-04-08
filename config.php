@@ -4,7 +4,7 @@ define('SITEURL' , 'http://'.$_SERVER['HTTP_HOST'].'/');
 
 ?>
 <script type="text/javascript">
-var doctorAbi =[
+var doctorAbi = [
 	{
 		"constant": true,
 		"inputs": [],
@@ -188,8 +188,7 @@ var doctorAbi =[
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	}
-];
-
+]
 var patientAbi = [
 	{
 		"constant": false,
@@ -208,6 +207,20 @@ var patientAbi = [
 		],
 		"payable": true,
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "amountGivenByUser",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -301,6 +314,20 @@ var patientAbi = [
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "wallet",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "getBloodGroup",
 		"outputs": [
 			{
@@ -365,6 +392,20 @@ var patientAbi = [
 	},
 	{
 		"constant": true,
+		"inputs": [],
+		"name": "getCategory",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [
 			{
 				"name": "_doctor",
@@ -386,6 +427,20 @@ var patientAbi = [
 		"constant": true,
 		"inputs": [],
 		"name": "getOwner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getMedicalInsurance",
 		"outputs": [
 			{
 				"name": "",
@@ -468,6 +523,25 @@ var patientAbi = [
 		"constant": true,
 		"inputs": [
 			{
+				"name": "_category",
+				"type": "string"
+			}
+		],
+		"name": "getPayable",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
 				"name": "index",
 				"type": "uint256"
 			}
@@ -495,6 +569,20 @@ var patientAbi = [
 			{
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "patient",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -536,6 +624,20 @@ var patientAbi = [
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "category",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -582,6 +684,11 @@ var patientAbi = [
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "fallback"
 	}
 ];
 </script>

@@ -71,7 +71,6 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-12 text-right">
-
 							<ul class="fh5co-social">
 								<li><a href="www.facebook.com"><i class="icon-facebook2"></i></a></li>
 								<li><a href="www.twitter.com"><i class="icon-twitter2"></i></a></li>
@@ -85,7 +84,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="fh5co-logo"><a href="index.html"><i class="icon-study"></i>PRIORI<span>.</span></a></div>
+							<div id="fh5co-logo"><a href="index.php"><i class="icon-study"></i>PRIORI<span></span></a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
@@ -137,6 +136,18 @@
 												<div class="form-group">
 													<label for="usr">Aadhar:</label>
 													<label for="usr" id="aadhar"></label>
+												</div>
+												<div class="form-group">
+													<label for="usr">Medical Insurance:</label>
+													<label for="usr" id="medicalInsurance"></label>
+												</div>
+												<div class="form-group">
+													<label for="usr">Category:</label>
+													<label for="usr" id="category"></label>
+												</div>
+												<div class="form-group">
+													<label for="usr">Funds in Insurance:</label>
+													<label for="usr" id="abountGivenByUser"></label>
 												</div>
 											</form>
 										</div>
@@ -214,8 +225,8 @@
 						<div class="row copyright">
 							<div class="col-md-12 text-center">
 								<p>
-									<small class="block">&copy; 2018 PRIORI. All Rights Reserved.</small>
-									<small class="block">Designed by <a href="#" target="_blank">Team <i>EXODUS</i></a> </small>
+									<small class="block">A PRIORI APP</small>
+									<small class="block">Designed by <a href="#" target="_blank">Team <i>EQUINOX</i></a> </small>
 								</p>
 							</div>
 						</div>
@@ -367,6 +378,10 @@
 						var patient = address;
 						var patinetInstance = patientContract.at(patient);
 
+						patinetInstance.amountGivenByUser(function(error, result) {
+							$('#abountGivenByUser').html(result.c[0]);
+						});
+
 						patinetInstance.getName(function(error, result) {
 							if(!error) {
 								$('#name').html(result);
@@ -402,6 +417,24 @@
 						patinetInstance.getAadharNumber(function(error, result) {
 							if(!error) {
 								$('#aadhar').html(result.c[0]);
+							}
+							else {
+								swal('Error', "Contract error", 'error');
+							}
+						});
+
+						patinetInstance.getMedicalInsurance(function(error, result) {
+							if(!error) {
+								$('#medicalInsurance').html(result);
+							}
+							else {
+								swal('Error', "Contract error", 'error');
+							}
+						});
+
+						patinetInstance.getCategory(function(error, result) {
+							if(!error) {
+								$('#category').html(result);
 							}
 							else {
 								swal('Error', "Contract error", 'error');
