@@ -1,0 +1,185 @@
+pragma solidity ^0.4.21;
+
+contract Doctor {
+    address private doctorsUnion = 0x55cE5bB33733C424672397c7b39c8e934F876666;
+    address private sender;
+    string private name;
+    uint256 private yearOfGraduation;
+    string private specialization;
+    string private degree;
+    uint256 private timeOfRegistration;
+    address private owner;
+    
+    function Doctor(string _name, uint256 _yearOfGraduation, string _specialization, string _degree, address _owner) public {
+        name = _name;
+        yearOfGraduation = _yearOfGraduation;
+        sender = msg.sender;
+        specialization = _specialization;
+        degree = _degree;
+        timeOfRegistration = now;
+        owner = _owner;
+    }
+    
+    function verify() public payable returns(bool) {
+        assert (msg.sender == owner);
+    }
+    
+    function getOwner() public view returns(address) {
+        return owner;
+    }
+    
+    function isVerified() public view returns(bool) {
+        return (doctorsUnion == sender);
+    }
+    function getName() public view returns(string) {
+        return name;
+    }
+    function getYearOfGraduation() public view returns(uint256) {
+        return yearOfGraduation;
+    }
+    function getSpecialization() public view returns(string) {
+        return specialization;
+    }
+    function getDegree() public view returns(string) {
+        return degree;
+    }
+    
+    function addRecord(string _illness, string _cause, string _prescription, string _remarks, address _patient) public payable returns(uint) {
+        require(msg.sender == owner);
+        
+        Patient patient = Patient(_patient);
+        patient.addRecord(_illness, _cause, _prescription, _remarks);
+    }
+    
+    function getRecord(uint256 _index, address _patient) public payable returns(bool) {
+        require(msg.sender == owner);
+        
+        Patient patient = Patient(_patient);
+        patient.getRecord(_index);
+        return true;
+    }
+
+}
+
+contract Patient {
+    address private aadharUnion = 0x55cE5bB33733C424672397c7b39c8e934F876666;
+    address private sender;
+    address private owner;
+    string private name;
+    uint256 private age;
+    string private bloodGroup;
+    string private gender;
+    uint256 private timeOfRegistration;
+    uint256 private aadharNumber;
+    
+    mapping(uint256 => Doctor) private mDoctor;
+    mapping(uint256 => uint256) private mtime;
+    mapping(uint256 => string) private millness;
+    mapping(uint256 => string) private mcause;
+    mapping(uint256 => string) private mprescription;
+    mapping(uint256 => string) private mremarks;
+    uint256 private records;
+    
+    mapping(address => bool) private permission;
+    
+    function Patient(string _name, uint256 _age, string _bloodGroup, string _gender, uint256 _aadharNumber, address _owner) public {
+        name = _name;
+        age = _age;
+        bloodGroup = _bloodGroup;
+        gender = _gender;
+        aadharNumber = _aadharNumber;
+        sender = msg.sender;
+        timeOfRegistration = now;
+        owner = _owner;
+        records = 0;
+    }
+    
+    function getOwner() public view returns(address) {
+        return owner;
+    }
+    
+    function verify() public payable returns(bool) {
+        assert (msg.sender == owner);
+    }
+    
+    function addPermission(address _doctor) public {
+        require(msg.sender == owner);
+        permission[_doctor] = true;
+    }
+    function removePermission(address _doctor) public {
+        require(msg.sender == owner);
+        permission[_doctor] = false;
+    }
+    function getPermission(address _doctor) public view returns(bool) {
+        require(msg.sender == owner);
+        return permission[_doctor];
+    }
+    
+    function addRecord(string _illness, string _cause, string _prescription, string _remarks) public payable returns(uint) {
+        Doctor doctor = Doctor(msg.sender);
+        require(permission[doctor] == true);
+        require(doctor.isVerified());
+        mDoctor[records] = doctor;
+        mtime[records] = now;
+        millness[records] = _illness;
+        mcause[records] = _cause;
+        mprescription[records] = _prescription;
+        mremarks[records] = _remarks;
+        records = records + 1;
+
+        return records;
+    }
+
+    function getRecordsCount() public view returns(uint) {
+        return records;
+    }
+
+    function getRecord(uint256 index) public payable returns(bool) {
+        Doctor doctor = Doctor(msg.sender);
+        require(permission[doctor] == true);
+        require(doctor.isVerified());
+        
+        return true;
+    }
+    
+    function getRecordIllness(uint256 index) public view returns(string, uint256) {
+        return (millness[index], index);
+    }
+    function getRecordCause(uint256 index) public view returns(string, uint256) {
+        return (mcause[index], index);
+    }
+    function getRecordPrescreption(uint256 index) public view returns(string, uint256) {
+        return (mprescription[index], index);
+    }
+    function getRecordTime(uint256 index) public view returns(uint256, uint256) {
+        return (mtime[index], index);
+    }
+    function getRecordDoctor(uint256 index) public view returns(Doctor, uint256) {
+        return (mDoctor[index], index);
+    }
+    function getRecordRemarks(uint256 index) public view returns(string, uint256) {
+        return (mremarks[index], index);
+    }
+    
+    function isVerified() public view returns(bool) {
+        return (aadharUnion == sender);
+    }
+    function getName() public view returns(string) {
+        return name;
+    }
+    function getAge() public view returns(uint256) {
+        return age;
+    }
+    function getBloodGroup() public view returns(string) {
+        return bloodGroup;
+    }
+    function getGender() public view returns(string) {
+        return gender;
+    }
+    function getAadharNumber() public view returns(uint256) {
+        return aadharNumber;
+    }
+    /*function getMedicalRecords() public view returns(PatientMedicalRecord) {
+        return medicalRecords;
+    }*/
+}
