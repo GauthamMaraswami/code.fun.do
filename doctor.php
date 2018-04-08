@@ -359,15 +359,6 @@
 			var patientContract = web3.eth.contract(patientAbi);
 			var patientInstance = patientContract.at(pAddress);
 
-			/*patientInstance.addPermission(DAddress, function(error, result) {
-				if(!error) {
-					swal("Success", "Access given!", "success");
-				}
-				else {
-					swal('Error', "Contract Error", 'error');
-				}
-			});*/
-
 			if(!PIsAddress) {
 				swal('Error', "Not a valid Address", 'error');
 			}

@@ -210,6 +210,21 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="pricing pricing--rabten">
+					<div class="col-md-8">
+						<div class="pricing__item">
+							<div class="wrap-price">
+							</div>
+
+							<div class="jquery-data">
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
 				<div id="fh5co-contact">
 					<div class="container">
 						<div class="row">
@@ -283,6 +298,95 @@
 				enableUtc: false
 			});
 
+			/*$(function() {
+
+		})*/
+
+		$(function() {
+			if (typeof web3 !== 'undefined') {
+				var pAddress = "<?php echo $_GET['address'] ?>";
+				var PIsAddress = web3.isAddress(pAddress);
+
+				var patientContract = web3.eth.contract(patientAbi);
+				var patientInstance = patientContract.at(pAddress);
+
+				if(!PIsAddress) {
+					swal('Error', "Not a valid Address", 'error');
+				}
+				else {
+					var patientContract = web3.eth.contract(patientAbi);
+
+					var patientInstance = patientContract.at(pAddress);
+
+					patientInstance.getRecordsCount(function (error, result) {
+						var records = result.c[0];
+						if(!error) {
+								var html = "";
+								for (var i = 0; i < records; i++) {
+									html += '<div class="pricing__price">';
+									html += '	<span class="pricing__anim pricing__anim--1">';
+									html += '		<span class="pricing__currency"></span><h2 id="time'+i+'"></h2>';
+									html += '	</span>';
+									html += '</div>';
+									html += '<div class="wrap-price">';
+									html += '	<div class="wrap-price">';
+									html += '		<form>';
+									html += '			<div class="form-group">';
+									html += '				<label for="usr">Doctor:</label>';
+									html += '				<label for="usr" id="doctorAddress'+i+'"></label>';
+									html += '			</div>';
+									html += '			<div class="form-group">';
+									html += '				<label for="usr">Illness:</label>';
+									html += '				<label for="usr" id="illness'+i+'"></label>';
+									html += '			</div>';
+									html += '			<div class="form-group">';
+									html += '				<label for="usr">Cause:</label>';
+									html += '				<label for="usr" id="cause'+i+'"></label>';
+									html += '			</div>';
+									html += '			<div class="form-group">';
+									html += '				<label for="usr">Prescription:</label>';
+									html += '				<label for="usr" id="prescription'+i+'"></label>';
+									html += '			</div>';
+									html += '			<div class="form-group">';
+									html += '				<label for="usr">Remarks:</label>';
+									html += '				<label for="usr" id="remarks'+i+'"></label>';
+									html += '			</div>';
+									html += '		</form>';
+									html += '	</div>';
+									html += '</div>';
+								}
+								$('.jquery-data').html('');
+								$('.jquery-data').append(html);
+
+								for (var i = records-1; i >= 0 ; i--) {
+									patientInstance.getRecordIllness(i ,function (error, result) {
+										$('#illness'+result[1].c[0]).append(result[0]);
+									});
+									patientInstance.getRecordCause(i ,function (error, result) {
+										$('#cause'+result[1].c[0]).html(result[0]);
+									});
+									patientInstance.getRecordPrescreption(i ,function (error, result) {
+										$('#prescription'+result[1].c[0]).html(result[0]);
+									});
+									patientInstance.getRecordTime(i ,function (error, result) {
+										var d = new Date((result[0].c[0])*1000);
+										$('#time'+result[1].c[0]).html(d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear());
+									});
+									patientInstance.getRecordDoctor(i ,function (error, result) {
+										$('#doctorAddress'+result[1].c[0]).html(result[0]);
+									});
+									patientInstance.getRecordRemarks(i ,function (error, result) {
+										$('#remarks'+result[1].c[0]).html(result[0]);
+									});
+								}
+							}
+						else {
+							swal("Error", "Contract error", "error");
+						}
+					});
+				}
+			}
+});
 			$('#givePermission').on('submit', function() {
 				if (typeof web3 !== 'undefined') {
 					var DAddress = $('#doctors_address_access').val();
@@ -448,5 +552,5 @@
 			});
 
 			</script>
-		</body>
-		</html>
+			</body>
+			</html>
